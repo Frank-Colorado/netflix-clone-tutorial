@@ -18,3 +18,12 @@ const getOriginals = () => {
 };
 
 getOriginals();
+
+// function that fetches Trending movies
+const getTrending = () => {
+  let url =
+    "https://api.themoviedb.org/3/trending/movie/week?api_key=19f84e11932abbc79e6d83f82d6d1045";
+  fetchMovies(url);
+};
+
+getTrending();
