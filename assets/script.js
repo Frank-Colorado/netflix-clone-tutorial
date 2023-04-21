@@ -1,23 +1,26 @@
 // DOM element variables
-const originalsDiv = document.querySelector(".netflixOriginals");
+const originalsDiv = document.querySelector(".original__movies");
 const trendingDiv = document.getElementById("trending");
 const topRatedDiv = document.getElementById("top_rated");
 
 // function that fetches data from movie API
-const fetchMovies = (url) => {
+const fetchMovies = (url, div) => {
   fetch(url)
     .then((response) => response.json())
     .then((data) => {
+      console.log(data);
       const movies = data.results;
       console.log(movies);
-      displayMovie(movies);
+      displayMovie(movies, div);
     });
 };
 
-const displayMovie = (movies) => {
-  for (movie of movies) {
-    console.log(movie);
-  }
+const displayMovie = (movies, div) => {
+  movies.map((movie) => {
+    const movieImg = document.createElement("img");
+    movieImg.src = `https://image.tmdb.org/t/p/original${movie.poster_path}`;
+    div.appendChild(movieImg);
+  });
 };
 
 // function that fetches Netflix Originals
@@ -36,7 +39,7 @@ const getTrending = () => {
   fetchMovies(url, trendingDiv);
 };
 
-//getTrending();
+getTrending();
 
 // function that fetches Top Rated movies
 const getTopRated = () => {
@@ -45,4 +48,4 @@ const getTopRated = () => {
   fetchMovies(url, topRatedDiv);
 };
 
-//getTopRated();
+getTopRated();
