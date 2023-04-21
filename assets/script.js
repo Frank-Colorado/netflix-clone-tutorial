@@ -25,6 +25,9 @@ const displayMovie = (movies, div) => {
     const movieImg = document.createElement("img");
     movieImg.setAttribute("data-id", movie.id);
     movieImg.src = `https://image.tmdb.org/t/p/original${movie.poster_path}`;
+    movieImg.addEventListener("click", (e) => {
+      getMovieID(e);
+    });
     div.appendChild(movieImg);
   });
 };
@@ -48,4 +51,8 @@ const getTopRated = () => {
   let url =
     "https://api.themoviedb.org/3/movie/top_rated?api_key=19f84e11932abbc79e6d83f82d6d1045&language=en-US&page=1";
   fetchMovies(url, topRatedDiv);
+};
+
+const getMovieID = (e) => {
+  const id = e.target.getAttribute("data-id");
 };
