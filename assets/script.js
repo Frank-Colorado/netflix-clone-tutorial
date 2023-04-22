@@ -2,6 +2,8 @@
 const originalsDiv = document.querySelector(".original__movies");
 const trendingDiv = document.getElementById("trending");
 const topRatedDiv = document.getElementById("top_rated");
+const iframe = document.getElementById("movieTrailer");
+const modalDiv = document.querySelector(".movieNotFound");
 
 window.onload = () => {
   getOriginals();
