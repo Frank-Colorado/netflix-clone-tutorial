@@ -70,7 +70,7 @@ const setTrailer = (trailer) => {
   if (trailer.length > 0) {
     movieNotFound.classList.add("d-none");
     iframe.classList.remove("d-none");
-    iframe.src = `https://www.youtube.com/embed/${trailers[0].key}`;
+    iframe.src = `https://www.youtube.com/embed/${trailer[0].key}`;
   } else {
     iframe.classList.add("d-none");
     movieNotFound.classList.remove("d-none");
@@ -85,12 +85,14 @@ const getMovieID = (e) => {
     const results = data.results;
     console.log(results);
     const youtubeTrailers = results.filter((result) => {
-      if (result.site === "Youtube" && result.type === "Trailer") {
+      if (result.site == "YouTube" && result.type == "Trailer") {
         return true;
       } else {
         return false;
       }
     });
+    console.log(youtubeTrailers);
     setTrailer(youtubeTrailers);
   });
+  $("#trailerModal").modal("show");
 };
