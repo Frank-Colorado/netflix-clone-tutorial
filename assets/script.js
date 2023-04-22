@@ -3,7 +3,7 @@ const originalsDiv = document.querySelector(".original__movies");
 const trendingDiv = document.getElementById("trending");
 const topRatedDiv = document.getElementById("top_rated");
 const iframe = document.getElementById("movieTrailer");
-const modalDiv = document.querySelector(".movieNotFound");
+const movieNotFound = document.querySelector(".movieNotFound");
 
 window.onload = () => {
   getOriginals();
@@ -64,6 +64,18 @@ async function getMovieTrailer(id) {
   const movie = await response.json();
   return movie;
 }
+
+// function that displays trailer on DOM modal
+const setTrailer = (trailer) => {
+  if (trailer.length > 0) {
+    movieNotFound.classList.add("d-none");
+    iframe.classList.remove("d-none");
+    iframe.src = `https://www.youtube.com/embed/${trailers[0].key}`;
+  } else {
+    iframe.classList.add("d-none");
+    movieNotFound.classList.remove("d-none");
+  }
+};
 
 // function that gets the 'data-id' from the target clicked
 const getMovieID = (e) => {
