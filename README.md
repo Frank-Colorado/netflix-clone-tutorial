@@ -6,7 +6,11 @@ This web application is a Netflix clone which was created using a tutorial in or
 
 ## Visuals
 
+![image](https://user-images.githubusercontent.com/123683792/233757145-08aa1266-e4fd-4ce6-8cd0-de8ae848f298.png)
+
 ## Website URL
+
+https://frank-colorado.github.io/netflix-clone-tutorial/
 
 ## Installation
 
