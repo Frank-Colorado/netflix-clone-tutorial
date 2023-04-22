@@ -13,9 +13,7 @@ const fetchMovies = (url, div) => {
   fetch(url)
     .then((response) => response.json())
     .then((data) => {
-      console.log(data);
       const movies = data.results;
-      console.log(movies);
       displayMovie(movies, div);
     });
 };
@@ -64,11 +62,21 @@ async function getMovieTrailer(id) {
   const movie = await response.json();
   return movie;
 }
+
 // function that gets the 'data-id' from the target clicked
 const getMovieID = (e) => {
   const id = e.target.getAttribute("data-id");
   console.log(id);
-  getMovieTrailer(id).then((movie) => {
-    console.log(movie);
+  getMovieTrailer(id).then((data) => {
+    const results = data.results;
+    console.log(results);
+    const youtubeTrailers = results.filter((result) => {
+      if (result.site === "Youtube" && result.type === "Trailer") {
+        return true;
+      } else {
+        return false;
+      }
+    });
+    setTrailer(youtubeTrailers);
   });
 };
