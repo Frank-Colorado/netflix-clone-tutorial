@@ -53,6 +53,22 @@ const getTopRated = () => {
   fetchMovies(url, topRatedDiv);
 };
 
+// async function that fetches movie data based on ID parameter
+async function getMovieTrailer(id) {
+  const url = `https://api.themoviedb.org/3/movie/${id}/videos?api_key=19f84e11932abbc79e6d83f82d6d1045&language=en-US`;
+  const response = await fetch(url);
+  if (!response.ok) {
+    const message = `An error has occured: ${response.status}`;
+    throw new Error(message);
+  }
+  const movie = await response.json();
+  return movie;
+}
+// function that gets the 'data-id' from the target clicked
 const getMovieID = (e) => {
   const id = e.target.getAttribute("data-id");
+  console.log(id);
+  getMovieTrailer(id).then((movie) => {
+    console.log(movie);
+  });
 };
